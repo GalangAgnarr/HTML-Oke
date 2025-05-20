@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Kelas</title>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+        }
+
+        .task-card {
+        display: flex;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+        text-align: c;
+        }
+
+        .task-card:hover {
+        transform: translateY(-3px);
+        }
+
+        .task-card img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        padding: 10px;
+        border-radius: 15%;
+        }
+
+        .task-info {
+        padding: 10px 15px;
+        flex: 1;
+        }
+
+        .task-info h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #0077b6;
+        }
+
+        .task-info p {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #333;
+        }
+
+        @media (max-width: 600px) {
+        .task-card {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            margin-right: 0;
+        }
+
+        .task-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            
+        }
+
+        .task-info {
+            padding: 10px;
+        }
+        }
+
+        .beranda {
+            background: linear-gradient(140deg, #493ec1, #493ec1);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 12px;
+            max-width: 95%;
+            margin: 20px auto;
+            box-shadow: 0 8px 20px rgba(55, 85, 149, 0.3);
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .beranda .section-title {   
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+
+        body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+        }
+
+        .navbar {
+        background-color: #493ec1;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        flex-wrap: wrap;
+        }
+
+        .logo {
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 5px;
+        }
+
+        .menu {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        }
+
+        .menu li a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 10px;
+        }
+
+        .menu li a:hover {
+        background-color: #0baeff6e;
+        border-radius: 5px;
+        transform: scale(1.05);
+        }
+
+        .menu-icon {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        }
+
+        #menu-toggle {
+        display: none;
+        }
+
+        .content {
+        padding: 20px;
+        }
+
+        footer {
+        background-color: #005f73;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+        }
+
+
+        th, td {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: left;
+        }
+
+        @media (max-width: 768px) {
+        .menu {
+            flex-direction: column;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            display: block;
+        }
+
+        #menu-toggle:checked + .menu-icon + .menu {
+            display: flex;
+        }
+        }
+        .struktur-kelas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+        }
+
+        .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        }
+
+        .anggota {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        text-align: center;
+        padding: 15px;
+        width: 120px;
+        transition: transform 0.2s ease;
+        }
+
+        .anggota:hover {
+        transform: scale(1.05);
+        }
+
+        .anggota img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        }
+
+        .anggota h4 {
+        margin: 0;
+        font-size: 14px;
+        color: #0077b6;
+        }
+
+        .anggota p {
+        font-size: 12px;
+        color: #333;
+        margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+        .anggota {
+            width: 100px;
+        }
+
+        .anggota img {
+            width: 70px;
+            height: 70px;
+        }
+        }
+        .jadwal-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+        }
+
+        .hari-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 15px 20px;
+        width: 180px;
+        transition: transform 0.2s ease;
+        }
+
+        .hari-card:hover {
+        transform: translateY(-5px);
+        }
+
+        .hari-card h4 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        color: #0077b6;
+        text-align: center;
+        }
+
+        .hari-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .hari-card ul li  {
+        font-size: 14px;
+        color: #333;
+        padding: 3px 0;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        padding: 6px;
+        }
+
+        .hari-card ul li :last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+        .jadwal-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hari-card {
+            width: 90%;
+        }
+        }
+        .footer {
+        background-color: #493ec1;
+        color: #fff;
+        padding: 30px 20px 10px;
+        font-size: 14px;
+        }
+
+        .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 30px;
+        }
+
+        .footer-column {
+        flex: 1;
+        min-width: 200px;
+        }
+
+        .footer-column h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #ffffff;
+        }
+
+        .footer-column p,
+        .footer-column ul li {
+        color: #ffffff;
+        margin: 5px 0;
+        }
+
+        .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .footer-column ul li a {
+        color: #fffdfd;
+        text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+        }
+
+        .footer-bottom {
+        text-align: center;
+        margin-top: 20px;
+        border-top: 1px solid #fcfcfc;
+        padding-top: 10px;
+        color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .footer-column {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            text-align: left;
+        }
+        }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><img src="MOXELGA.png" alt="logo r3" style="height: 40px;"></div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <ul class="menu">
+      <li><a href="#tugas">Tugas</a></li>
+      <li><a href="#struktur">Struktur</a></li>
+      <li><a href="#jadwal">Jadwal Piket</a></li>
+    </ul>
+  </nav>
+  
+  <div class="beranda">
+  <section class="content">
+    <h1 style="text-align:center;">Selamat Datang di Website Kelas X RPL 3</h1>
+    <p style="text-align:center;">Website ini menyediakan berbagai informasi penting seputar kegiatan kelas, mulai dari daftar tugas yang harus dikerjakan, struktur organisasi kelas, hingga jadwal piket mingguan yang telah ditentukan. Semuanya dirancang agar siswa dapat tetap terorganisir dan terhubung satu sama lain dalam suasana belajar yang menyenangkan dan tertib.</p>
+  </section>
+  </div>
+
+
+ <section id="tugas" class="content">
+  <h2 style="text-align: center;">Daftar Tugas Kelas</h2>
+
+  <div class="task-list">
+    <div class="task-card">
+      <img src="tugas poster.jpg" alt="Poster">
+      <div class="task-info">
+        <h3>Tugas 1: Desain Poster</h3>
+        <p>Buat poster promosi kegiatan sekolah menggunakan Canva atau Photoshop.</p>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <img src="tugas artikel.jpg" alt="Opini">
+      <div class="task-info">
+        <h3>Tugas 2: Artikel Opini</h3>
+        <p>Tulis artikel opini minimal 300 kata tentang isu sosial di sekitar.</p>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <img src="tugas presentasi.jpg" alt="Video">
+      <div class="task-info">
+        <h3>Tugas 3: Video Presentasi</h3>
+        <p>Rekam presentasi tentang materi pelajaran IPS dan upload ke YouTube (private).</p>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <img src="tugas buku fiksi.jpg" alt="Resume">
+      <div class="task-info">
+        <h3>Tugas 4: Resume Buku</h3>
+        <p>Buat rangkuman dari buku fiksi atau non-fiksi favorit kalian dalam 1 halaman.</p>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <img src="tugas infografis.jpg" alt="Infografis">
+      <div class="task-info">
+        <h3>Tugas 5: Infografis</h3>
+        <p>Desain infografis bertema “Bahaya Sampah Plastik” dan kirim via Google Drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="struktur" class="content">
+  <h2 style="text-align:center;">Struktur Organisasi Kelas</h2>
+
+  <div class="struktur-kelas">
+    <!-- Ketua -->
+    <div class="row center">
+      <div class="anggota">
+        <img src="X RPL 3_02_Akira Saskara Hartono.jpg" alt="Ketua">
+        <h4>Ketua</h4>
+        <p>Akira Saskara Hartono</p>
+      </div>
+    </div>
+
+    <!-- Wakil, Bendahara, Sekretaris, Kebersihan -->
+    <div class="row">
+      <div class="anggota">
+        <img src="X RPL 3_12_Fattan Arifudin.jpg" alt="Wakil">
+        <h4>Wakil</h4>
+        <p>Fattan Arifudin</p>
+      </div>
+      <div class="anggota">
+        <img src="X RPL 3_18_Mauruzt Landsy Oktania.jpg" alt="Bendahara">
+        <h4>Bendahara 1</h4>
+        <p>Mauruzt Landsy Oktania</p>
+      </div>
+      <div class="anggota">
+        <img src="X RPL 3_15_Fidela Putri Andriana.jpg" alt="Bendahara">
+        <h4>Bendahara 2</h4>
+        <p>Fidela Putri Andriana</p>
+      </div>
+      <div class="anggota">
+        <img src="X RPL 3_17_Kendra Respati Maheswara Ugroho.jpg" alt="Sekretaris">
+        <h4>Sekretaris 1</h4>
+        <p>Kendra Respati Maheswara Ugroho</p>
+      </div>
+      <div class="anggota">
+        <img src="X RPL 3_32_Regan Pratama Banyuadji.jpg" alt="Sekretaris">
+        <h4>Sekretaris 2</h4>
+        <p>Regan Pratama Banyuadji</p>
+      </div>
+      <div class="anggota">
+        <img src="X RPL 3_34_Ummu Zahro.jpg" alt="Kebersihan">
+        <h4>Kebersihan</h4>
+        <p>Ummu Zahro</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="jadwal" class="content">
+  <h2 style="text-align:center;">Jadwal Piket Mingguan</h2>
+
+  <div class="jadwal-container">
+    <div class="hari-card">
+      <h4>Senin</h4>
+      <ul>
+        <li>Alya</li>
+        <li>Rafael</li>
+        <li>Regan</li>
+        <li>Wira</li>
+        <li>Azhar</li>
+        <li>Danish</li>
+        <li>Zulkar</li>
+      </ul>
+    </div>
+    <div class="hari-card">
+      <h4>Selasa</h4>
+      <ul>
+        <li>Violet</li>
+        <li>Gesya</li>
+        <li>Fattan</li>
+        <li>Kendra</li>
+        <li>Ibra</li>
+        <li>Yusuf</li>
+      </ul>
+    </div>
+    <div class="hari-card">
+      <h4>Rabu</h4>
+      <ul>
+        <li>Senja</li>
+        <li>Queen</li>
+        <li>Alif</li>
+        <li>Andhika</li>
+        <li>Rafani</li>
+        <li>Bryan</li>
+        <li>Arkhan</li>
+      </ul>
+    </div>
+    <div class="hari-card">
+      <h4>Kamis</h4>
+      <ul>
+        <li>Muza</li>
+        <li>Nia</li>
+        <li>Queena</li>
+        <li>Jasmir</li>
+        <li>Fawwaz</li>
+        <li>Danies</li>
+        <li>David</li>
+      </ul>
+    </div>
+    <div class="hari-card">
+      <h4>Jumat</h4>
+      <ul>
+        <li>Almira</li>
+        <li>Fidela</li>
+        <li>Akira</li>
+        <li>Ihsan</li>
+        <li>Dimas</li>
+        <li>Galang</li>
+        <li>Hanan</li>
+        <li>Fian</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>Tentang Kami</h4>
+      <p>Kami adalah tim pengembang web yang berdedikasi untuk Kelas Anda.</p>
+    </div>
+    <div class="footer-column">
+      <h4>Sosial Media</h4>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Kontak</h4>
+      <p>Email: info@moklet.com</p>
+      <p>Telepon: (021) 101-1011</p>
+      <p>Alamat: Jl. Danau Ranau No. 1, Sawojajar Malang</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy 2025 Mokleters. All rights reserved.</p>
+  </div>
+</footer>
+    
+</body>
+</html>
